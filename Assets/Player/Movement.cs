@@ -6,10 +6,12 @@ public class Movement : MonoBehaviour
     [SerializeField] private float _jumpForce;
 
     private Animator _animator;
+    private Rigidbody2D _player;
 
     private void Start()
     {
         _animator = GetComponent<Animator>();
+        _player = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
@@ -37,7 +39,7 @@ public class Movement : MonoBehaviour
 
             if (hit.collider && hit.distance < 0.45f)
             {
-                GetComponent<Rigidbody2D>().AddForce(Vector2.up * _jumpForce);
+                _player.AddForce(Vector2.up * _jumpForce);
                 _animator.SetTrigger("Attack");
             }
         }

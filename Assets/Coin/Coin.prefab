@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1750513272740239940}
   - component: {fileID: 1750513272740239941}
   - component: {fileID: 1750513272740239945}
-  - component: {fileID: 4144902221122531671}
+  - component: {fileID: 3341312068695640273}
   m_Layer: 3
   m_Name: Coin
   m_TagString: Untagged
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _jumpForce: 300
---- !u!58 &4144902221122531671
+--- !u!58 &3341312068695640273
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -12,9 +12,8 @@ public class Enemy : MonoBehaviour
             if (player.GetComponent<Rigidbody2D>().velocity.y < 0)
             {
                 player.GetComponent<Rigidbody2D>().AddForce(Vector2.up * _jumpForce);
-                Destroy(this.gameObject);
+                Destroy(gameObject);
 
-                Transform transform = GetComponent<Transform>();
                 GameObject coin = Instantiate(_coin.gameObject, transform.position, transform.rotation);
             }
             else
