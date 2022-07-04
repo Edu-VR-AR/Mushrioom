@@ -1,16 +1,17 @@
 using UnityEngine;
 using TMPro;
 
+[RequireComponent(typeof(TMP_Text))]
+
 public class CoinsScore : MonoBehaviour
 {
+    [SerializeField] private Player _player;
+
     private TMP_Text _scoreVisualize;
     private int _coinsScore = 0;
-    private Player _player;
 
     private void OnEnable()
     {
-        _player = FindObjectOfType<Player>();
-
         _player.CoinCatchedUp += CoinCatchedUp;
     }
 

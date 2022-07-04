@@ -1,5 +1,7 @@
 using UnityEngine;
 
+[RequireComponent(typeof(WaypointMovement))]
+
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float _jumpForce;
@@ -9,12 +11,14 @@ public class Enemy : MonoBehaviour
     {
         if (collision.TryGetComponent(out Player player))
         {
-            if (player.GetComponent<Rigidbody2D>().velocity.y < 0)
+            Rigidbody2D playerBody = player.GetComponent<Rigidbody2D>();
+
+            if (playerBody.velocity.y < 0)
             {
-                player.GetComponent<Rigidbody2D>().AddForce(Vector2.up * _jumpForce);
+                playerBody.AddForce(Vector2.up * _jumpForce);
                 Destroy(gameObject);
 
-                GameObject coin = Instantiate(_coin.gameObject, transform.position, transform.rotation);
+                Coin coin = Instantiate(_coin, transform.position, transform.rotation);
             }
             else
             {

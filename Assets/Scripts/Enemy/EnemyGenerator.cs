@@ -8,6 +8,7 @@ public class EnemyGenerator : MonoBehaviour
     [SerializeField] public Transform _path;
 
     private SpawnPoint[] _spawnPoints;
+    private float _spawnTimeDecimator = 1.01f;
 
     private void Awake()
     {
@@ -23,13 +24,13 @@ public class EnemyGenerator : MonoBehaviour
         {
             WaitForSeconds timeDelay = new WaitForSeconds(_timeBetweenSpawn);
 
-            Transform transform = _spawnPoints[Random.Range(0, _spawnPoints.Length)].GetComponent<Transform>();
-            GameObject newEnemy = Instantiate(_enemy.gameObject, transform.position, transform.rotation);
+            Transform transform = _spawnPoints[Random.Range(0, _spawnPoints.Length)].transform;
+            Enemy newEnemy = Instantiate(_enemy, transform.position, transform.rotation);
             newEnemy.GetComponent<WaypointMovement>()._path = _path;
 
             yield return timeDelay;
 
-            _timeBetweenSpawn = _timeBetweenSpawn / 1.01f;
+            _timeBetweenSpawn = _timeBetweenSpawn / _spawnTimeDecimator;
         }
     }
 }

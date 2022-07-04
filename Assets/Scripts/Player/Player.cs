@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(Rigidbody2D))]
+
 public class Player : MonoBehaviour
 {
     public event UnityAction CoinCatchedUp;
