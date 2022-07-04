@@ -10,6 +10,8 @@ public class Movement : MonoBehaviour
 
     private Animator _animator;
     private Rigidbody2D _player;
+    private float _distanceAboveFloor = 0.45f;
+    private float _runSpeed = 1.0f;
 
     private void Start()
     {
@@ -22,28 +24,28 @@ public class Movement : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
-            transform.Translate(1 * _speed * Time.deltaTime, 0, 0);
-            _animator.SetFloat("Speed", 1.0f);
+            transform.Translate(_speed * Time.deltaTime, 0, 0);
+            _animator.SetFloat(AnimatorPlayerController.Params.Speed, _runSpeed);
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
-            transform.Translate(1 * _speed * Time.deltaTime, 0, 0);
-            _animator.SetFloat("Speed", 1.0f);
+            transform.Translate(_speed * Time.deltaTime, 0, 0);
+            _animator.SetFloat(AnimatorPlayerController.Params.Speed, _runSpeed);
         }
         else
         {
-            _animator.SetFloat("Speed", 0);
+            _animator.SetFloat(AnimatorPlayerController.Params.Speed, 0);
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, -transform.up);
 
-            if (hit.collider && hit.distance < 0.45f)
+            if (hit.collider && hit.distance < _distanceAboveFloor)
             {
                 _player.AddForce(Vector2.up * _jumpForce);
-                _animator.SetTrigger("Attack");
+                _animator.SetTrigger(AnimatorPlayerController.Params.Attack);
             }
         }
     }

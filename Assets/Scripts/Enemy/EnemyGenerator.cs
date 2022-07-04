@@ -26,7 +26,7 @@ public class EnemyGenerator : MonoBehaviour
 
             Transform transform = _spawnPoints[Random.Range(0, _spawnPoints.Length)].transform;
             Enemy newEnemy = Instantiate(_enemy, transform.position, transform.rotation);
-            newEnemy.GetComponent<WaypointMovement>()._path = _path;
+            newEnemy.EnemyWaypoint._path = _path;
 
             yield return timeDelay;
 

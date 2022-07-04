@@ -7,11 +7,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float _jumpForce;
     [SerializeField] private Coin _coin;
 
+    public WaypointMovement EnemyWaypoint { get { return GetComponent<WaypointMovement>(); } }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.TryGetComponent(out Player player))
         {
-            Rigidbody2D playerBody = player.GetComponent<Rigidbody2D>();
+            Rigidbody2D playerBody = player.PlayerBody2D;
 
             if (playerBody.velocity.y < 0)
             {
